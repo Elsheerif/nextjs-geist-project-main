@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capsoul - Your Passion's Call Inside It All</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@300;400;700&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #fed7aa 0%, #bfdbfe 25%, #fef08a 50%, #fbcfe8 75%, #bbf7d0 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .font-funky {
+            font-family: 'Bubblegum Sans', cursive;
+            letter-spacing: 0.05em;
+            transform: rotate(-1deg);
+            display: inline-block;
+        }
+
+        .font-playful {
+            font-family: 'Comic Neue', cursive;
+            letter-spacing: 0.03em;
+        }
+
+        .font-heading {
+            font-family: 'Fredoka', cursive;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ea580c;
+        }
+
+        .logo-svg {
+            width: 40px;
+            height: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ea580c;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #374151;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #ea580c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #c2410c;
+        }
+
+        .btn-secondary {
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: #dbeafe;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .pottery { background: linear-gradient(135deg, #fb923c, #f97316); }
+        .painting { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+        .crochet { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+        .embroidery { background: linear-gradient(135deg, #f472b6, #ec4899); }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        /* Community Posts */
+        .community-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .post {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #6b7280;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-pottery { background: #fed7aa; color: #9a3412; }
+        .badge-painting { background: #dbeafe; color: #1e40af; }
+        .badge-crochet { background: #fef3c7; color: #92400e; }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .post-actions span {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .post-actions span:hover {
+            color: #374151;
+        }
+
+        /* Tutorials */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .tutorial-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #fbbf24;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.25rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section spacing */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #374151;
+        }
+
+        /* Capsule Logo Styles */
+        .capsule-logo {
+            fill: #ea580c;
+            stroke: #f97316;
+            stroke-width: 2;
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 40px;
+            margin: 0 auto 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo font-heading">
+                <svg class="logo-svg" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="25" rx="45" ry="20" class="capsule-logo"/>
+                    <circle cx="25" cy="25" r="8" fill="#fff"/>
+                    <circle cx="75" cy="25" r="8" fill="#fff"/>
+                    <text x="50" y="30" text-anchor="middle" fill="#fff" font-size="12" font-family="Fredoka" font-weight="bold">C</text>
+                </svg>
+                Capsoul
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#tutorials">Tutorials</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+                <svg class="hero-logo" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="25" rx="45" ry="20" fill="#ea580c" stroke="#f97316" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="8" fill="#fff"/>
+                    <circle cx="75" cy="25" r="8" fill="#fff"/>
+                    <text x="50" y="30" text-anchor="middle" fill="#fff" font-size="16" font-family="Fredoka" font-weight="bold">C</text>
+                </svg>
+                <h1 class="font-funky" style="margin: 0;">
+                    <span style="color: #ea580c;">Cap</span>
+                    <span style="color: #3b82f6;">soul</span>
+                </h1>
+            </div>
+            <p class="font-playful">Your passion's call inside it all</p>
+            <p class="font-playful" style="max-width: 600px; margin: 0 auto 2rem;">
+                Discover your new hobby with our capsule-shaped boxes containing everything you need to master pottery, painting, crochet, and embroidery.
+            </p>
+            <div>
+                <a href="#shop" class="btn btn-primary">Shop Capsouls</a>
+                <a href="#community" class="btn btn-secondary">Join Community</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop">
+        <div class="container">
+            <h2 class="section-title font-funky">Choose Your Creative Journey</h2>
+            <div class="products-grid">
+                <!-- Pottery Capsoul -->
+                <div class="product-card">
+                    <div class="product-image pottery">🏺 Pottery</div>
+                    <div class="product-content">
+                        <h3 class="product-title font-heading">Pottery Capsoul</h3>
+                        <p class="font-playful">Clay, tools, and everything to shape your pottery dreams</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="product-price">$89.99</span>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painting Capsoul -->
+                <div class="product-card">
+                    <div class="product-image painting">🎨 Painting</div>
+                    <div class="product-content">
+                        <h3 class="product-title font-heading">Painting Capsoul</h3>
+                        <p class="font-playful">Brushes, paints, and canvases for your artistic journey</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="product-price">$79.99</span>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crochet Capsoul -->
+                <div class="product-card">
+                    <div class="product-image crochet">🧶 Crochet</div>
+                    <div class="product-content">
+                        <h3 class="product-title font-heading">Crochet Capsoul</h3>
+                        <p class="font-playful">Yarns, hooks, and patterns to weave your creativity</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="product-price">$69.99</span>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Embroidery Capsoul -->
+                <div class="product-card">
+                    <div class="product-image embroidery">🪡 Embroidery</div>
+                    <div class="product-content">
+                        <h3 class="product-title font-heading">Embroidery Capsoul</h3>
+                        <p class="font-playful">Threads, needles, and hoops for delicate artistry</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="product-price">$74.99</span>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community">
+        <div class="container">
+            <h2 class="section-title font-funky">Community Hub</h2>
+            <div class="community-posts">
+                <!-- Youssef Walid -->
+                <div class="post">
+                    <div class="post-header">
+                        <div class="avatar">YW</div>
+                        <div>
+                            <h4 class="font-heading">Youssef Walid</h4>
+                            <div class="post-meta">
+                                <span class="badge badge-pottery">Pottery Pro</span>
+                                <span>• 2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-playful">Just finished my first ceramic bowl! The glazing turned out better than expected. Thanks to the Pottery Capsoul tutorial on centering clay - it made all the difference!</p>
+                    <div class="post-actions">
+                        <span>❤️ 24</span>
+                        <span>💬 8</span>
+                        <span>🔄 Share</span>
+                    </div>
+                </div>
+
+                <!-- Nour Eladawy -->
+                <div class="post">
+                    <div class="post-header">
+                        <div class="avatar">NE</div>
+                        <div>
+                            <h4 class="font-heading">Nour Eladawy</h4>
+                            <div class="post-meta">
+                                <span class="badge badge-painting">Artist</span>
+                                <span>• 5 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-playful">Watercolor landscape from yesterday's session. Still learning color mixing but loving the process! The brushes in my Painting Capsoul are amazing quality.</p>
+                    <div class="post-actions">
+                        <span>❤️ 31</span>
+                        <span>💬 12</span>
+                        <span>🔄 Share</span>
+                    </div>
+                </div>
+
+                <!-- Nour Helal -->
+                <div class="post">
+                    <div class="post-header">
+                        <div class="avatar">NH</div>
+                        <div>
+                            <h4 class="font-heading">Nour Helal</h4>
+                            <div class="post-meta">
+                                <span class="badge badge-crochet">Yarn Enthusiast</span>
+                                <span>• 1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-playful">Completed my first granny square blanket! 64 squares and countless hours later... The pattern book from Crochet Capsoul was so helpful for a beginner like me.</p>
+                    <div class="post-actions">
+                        <span>❤️ 45</span>
+                        <span>💬 15</span>
+                        <span>🔄 Share</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorials Section -->
+    <section id="tutorials">
+        <div class="container">
+            <h2 class="section-title font-funky">Learn & Master</h2>
+            <div class="tutorials-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-icon pottery">🏺</div>
+                    <h3 class="font-heading">Pottery Basics</h3>
+                    <p class="font-playful">15 min • Beginner</p>
+                    <p class="font-playful" style="font-size: 0.875rem; color: #6b7280;">Learn the fundamentals of working with clay</p>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon painting">🎨</div>
+                    <h3 class="font-heading">Watercolor Basics</h3>
+                    <p class="font-playful">18 min • Beginner</p>
+                    <p class="font-playful" style="font-size: 0.875rem; color: #6b7280;">Introduction to watercolor techniques</p>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon crochet">🧶</div>
+                    <h3 class="font-heading">Basic Stitches</h3>
+                    <p class="font-playful">20 min • Beginner</p>
+                    <p class="font-playful" style="font-size: 0.875rem; color: #6b7280;">Learn fundamental crochet stitches</p>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon embroidery">🪡</div>
+                    <h3 class="font-heading">Basic Stitches</h3>
+                    <p class="font-playful">24 min • Beginner</p>
+                    <p class="font-playful" style="font-size: 0.875rem; color: #6b7280;">Master essential embroidery stitches</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <svg width="30" height="15" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="50" cy="25" rx="45" ry="20" fill="#fbbf24" stroke="#f59e0b" stroke-width="1"/>
+                            <circle cx="25" cy="25" r="4" fill="#fff"/>
+                            <circle cx="75" cy="25" r="4" fill="#fff"/>
+                            <text x="50" y="28" text-anchor="middle" fill="#fff" font-size="8" font-family="Fredoka" font-weight="bold">C</text>
+                        </svg>
+                        <h4 class="font-heading" style="margin: 0;">Capsoul</h4>
+                    </div>
+                    <p class="font-playful">Your passion's call inside it all</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="font-heading">Shop</h4>
+                    <ul>
+                        <li><a href="#shop">All Capsouls</a></li>
+                        <li><a href="#shop">Pottery</a></li>
+                        <li><a href="#shop">Painting</a></li>
+                        <li><a href="#shop">Crochet</a></li>
+                        <li><a href="#shop">Embroidery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="font-heading">Community</h4>
+                    <ul>
+                        <li><a href="#community">Share Progress</a></li>
+                        <li><a href="#community">Get Inspired</a></li>
+                        <li><a href="#community">Connect</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="font-heading">Learn</h4>
+                    <ul>
+                        <li><a href="#tutorials">Video Tutorials</a></li>
+                        <li><a href="#tutorials">Step-by-Step Guides</a></li>
+                        <li><a href="#tutorials">Expert Tips</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; color: #9ca3af;">
+                <p class="font-playful">&copy; 2024 Capsoul. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add click handlers for post interactions
+            document.querySelectorAll('.post-actions span').forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.textContent.trim();
+                    if (action.includes('❤️')) {
+                        const currentLikes = parseInt(this.textContent.match(/\d+/)[0]);
+                        this.textContent = `❤️ ${currentLikes + 1}`;
+                    }
+                });
+            });
+
+            // Add hover effects for product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add cart functionality
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                if (button.textContent.includes('Add to Cart')) {
+                    button.addEventListener('click', function() {
+                        alert('Added to cart! 🛒');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
